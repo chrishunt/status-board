@@ -28,6 +28,7 @@ module Libsyn
 
         csv << ["Downloads", *episodes]
         months.each { |month| csv << [month, *downloads[month]] }
+        csv << ["Totals"]
       end
     end
   end
