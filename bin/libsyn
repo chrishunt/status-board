@@ -1,0 +1,9 @@
+#!/usr/bin/env ruby
+
+require 'libsyn'
+
+if ARGV.count == 3
+  print Libsyn::PanicCsv.new Libsyn::Http.new(*ARGV).get
+else
+  puts "usage: libsyn [email] [password] [show_id]"
+end
