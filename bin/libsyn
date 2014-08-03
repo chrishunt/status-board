@@ -2,8 +2,17 @@
 
 require 'libsyn'
 
-if ARGV.count == 3
-  print Libsyn::PanicCsv.new Libsyn::Http.new(*ARGV).get
+email, password, show_id = *(
+  if ARGV.first.to_s.downcase == '--from-env'
+    [ ENV['LIBSYN_EMAIL'],
+      ENV['LIBSYN_PASSWORD'],
+      ENV['LIBSYN_SHOW_ID'] ]
+  else
+    ARGV
+  end)
+
+if email && password && show_id
+  print Libsyn::PanicCsv.new Libsyn::Http.new(email, password, show_id).get
 else
   puts "usage: libsyn [email] [password] [show_id]"
 end
