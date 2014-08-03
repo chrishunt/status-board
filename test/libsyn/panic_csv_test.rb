@@ -25,9 +25,9 @@ module Libsyn
 
         assert_equal [
           "Downloads,2: This is a test,1: Why I use Vim",
-          "August,500,438",
-          "July,0,181",
           "June,1,0",
+          "July,0,181",
+          "August,500,438",
           "Totals", ""
         ].join("\n"), csv.to_s
       end

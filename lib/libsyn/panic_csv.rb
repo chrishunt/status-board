@@ -27,7 +27,7 @@ module Libsyn
         end
 
         csv << ["Downloads", *episodes]
-        months.each { |month| csv << [month, *downloads[month]] }
+        months.reverse.each { |month| csv << [month, *downloads[month]] }
         csv << ["Totals"]
       end
     end
