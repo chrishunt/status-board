@@ -17,10 +17,9 @@ module Libsyn
 
       {
         "graph" => {
-          "title" => "Downloads",
+          "title" => "Total Downloads",
           "refreshEveryNSeconds" => 120,
           "datasequences" => [{
-            "title" => "Total",
             "datapoints" => datapoints
           }]
         }
@@ -35,7 +34,6 @@ module Libsyn
           "title" => episodes.first,
           "refreshEveryNSeconds" => 120,
           "datasequences" => [{
-            "title" => "Downloads",
             "datapoints" => [{
               "title" => months.first,
               "value" => downloads[months.first].first

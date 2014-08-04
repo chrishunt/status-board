@@ -32,10 +32,9 @@ module Libsyn
 
         assert_equal ({
           "graph" => {
-            "title" => "Downloads",
+            "title" => "Total Downloads",
             "refreshEveryNSeconds" => 120,
             "datasequences" => [{
-              "title" => "Total",
               "datapoints" => [
                 { "title" => "June",   "value" => 27 },
                 { "title" => "July",   "value" => 24 },
@@ -56,7 +55,6 @@ module Libsyn
             "title" => "3: Most recent",
             "refreshEveryNSeconds" => 120,
             "datasequences" => [{
-              "title" => "Downloads",
               "datapoints" => [
                 { "title" => "August", "value" => 10 }
               ]
