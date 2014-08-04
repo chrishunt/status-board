@@ -49,7 +49,7 @@ module Libsyn
     end
 
     def to_s
-      [most_recent, totals].join "\n"
+      [most_recent, totals].join "\n\n"
     end
 
     private
