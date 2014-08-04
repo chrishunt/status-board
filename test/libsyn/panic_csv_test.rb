@@ -24,7 +24,7 @@ module Libsyn
         ]])
 
         assert_equal [
-          "Podcast Downloads,2: This is a test,1: Why I use Vim",
+          "Downloads,2: This is a test,1: Why I use Vim",
           "June,1,0",
           "July,0,181",
           "August,500,438",
