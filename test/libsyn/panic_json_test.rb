@@ -58,7 +58,7 @@ module Libsyn
             "datasequences" => [{
               "title" => "3: Most recent",
               "datapoints" => [
-                { "title" => "August", "value" => 10 }
+                { "title" => "August", "value" => 33 }
               ]
             }]
           }

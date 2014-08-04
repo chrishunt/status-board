@@ -30,6 +30,8 @@ module Libsyn
     def most_recent
       episodes, downloads, months = parse(input)
 
+      downloads = months.collect { |month| downloads[month].first }.inject(&:+)
+
       {
         "graph" => {
           "title" => "Downloads",
@@ -38,7 +40,7 @@ module Libsyn
             "title" => episodes.first,
             "datapoints" => [{
               "title" => months.first,
-              "value" => downloads[months.first].first
+              "value" => downloads
             }]
           }]
         }
