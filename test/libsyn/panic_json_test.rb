@@ -35,7 +35,7 @@ module Libsyn
             "title" => "Downloads",
             "refreshEveryNSeconds" => 120,
             "datasequences" => [{
-              "title" => "Total",
+              "title" => "",
               "datapoints" => [
                 { "title" => "June",   "value" => 27 },
                 { "title" => "July",   "value" => 24 },
@@ -56,7 +56,7 @@ module Libsyn
             "title" => "3: Most recent",
             "refreshEveryNSeconds" => 120,
             "datasequences" => [{
-              "title" => "Downloads",
+              "title" => "",
               "datapoints" => [
                 { "title" => "August", "value" => 10 }
               ]
