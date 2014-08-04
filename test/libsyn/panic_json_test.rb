@@ -53,10 +53,10 @@ module Libsyn
 
         assert_equal ({
           "graph" => {
-            "title" => "3: Most recent",
+            "title" => "Downloads",
             "refreshEveryNSeconds" => 120,
             "datasequences" => [{
-              "title" => "Downloads",
+              "title" => "3: Most recent",
               "datapoints" => [
                 { "title" => "August", "value" => 10 }
               ]

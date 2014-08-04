@@ -32,10 +32,10 @@ module Libsyn
 
       {
         "graph" => {
-          "title" => episodes.first,
+          "title" => "Downloads",
           "refreshEveryNSeconds" => 120,
           "datasequences" => [{
-            "title" => "Downloads",
+            "title" => episodes.first,
             "datapoints" => [{
               "title" => months.first,
               "value" => downloads[months.first].first
