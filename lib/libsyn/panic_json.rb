@@ -11,12 +11,8 @@ module Libsyn
     def totals
       episodes, downloads, months = parse(input)
 
-      datapoints = []
-
-      months.reverse.each do |month|
-        datapoints << {
-          "title" => month, "value" => downloads[month].inject(&:+)
-        }
+      datapoints = months.reverse.collect do |month|
+        { "title" => month, "value" => downloads[month].inject(&:+) }
       end
 
       {
@@ -34,15 +30,16 @@ module Libsyn
     def most_recent
       episodes, downloads, months = parse(input)
 
-      datapoint = { "title" => months.first, "value" => downloads[months.first].first }
-
       {
         "graph" => {
           "title" => episodes.first,
           "refreshEveryNSeconds" => 120,
           "datasequences" => [{
             "title" => "Downloads",
-            "datapoints" => [ datapoint ]
+            "datapoints" => [{
+              "title" => months.first,
+              "value" => downloads[months.first].first
+            }]
           }]
         }
       }.to_json
