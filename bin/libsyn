@@ -2,17 +2,21 @@
 
 require 'libsyn'
 
-email, password, show_id = *(
+email, password, show_id, totals = *(
   if ARGV.first.to_s.downcase == '--from-env'
     [ ENV['LIBSYN_EMAIL'],
       ENV['LIBSYN_PASSWORD'],
-      ENV['LIBSYN_SHOW_ID'] ]
+      ENV['LIBSYN_SHOW_ID'],
+      ENV['LIBSYN_TOTALS'] ]
   else
     ARGV
   end)
 
 if email && password && show_id
-  print Libsyn::PanicJson.new Libsyn::Http.new(email, password, show_id).get
+  stats = Libsyn::Http.new(email, password, show_id).get
+  json  = Libsyn::PanicJson.new(stats)
+
+  print totals ? json.totals : json.most_recent
 else
   puts "usage: libsyn [email] [password] [show_id]"
 end
