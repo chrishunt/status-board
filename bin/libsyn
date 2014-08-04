@@ -12,7 +12,7 @@ email, password, show_id = *(
   end)
 
 if email && password && show_id
-  print Libsyn::PanicCsv.new Libsyn::Http.new(email, password, show_id).get
+  print Libsyn::PanicJson.new Libsyn::Http.new(email, password, show_id).get
 else
   puts "usage: libsyn [email] [password] [show_id]"
 end
