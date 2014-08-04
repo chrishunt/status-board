@@ -23,12 +23,14 @@ module Libsyn
 
           episodes << episode
 
-          0.upto(months.count).each { |i| downloads[months[i]] << dls[i] }
+          0.upto(months.count).each { |i| downloads[months[i]] << dls[i].to_i }
         end
 
-        csv << ["Downloads", *episodes]
-        months.reverse.each { |month| csv << [month, *downloads[month]] }
-        csv << ["Totals"]
+        csv << ["Downloads", episodes.first, "Total"]
+
+        months.reverse.each do |month|
+          csv << [month, downloads[month].first, downloads[month].inject(&:+)]
+        end
       end
     end
   end

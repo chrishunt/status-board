@@ -27,11 +27,10 @@ module Libsyn
         ]])
 
         assert_equal [
-          "Downloads,3: Most recent,2: This is a test,1: Why I use Vim",
-          "June,12,9,6",
-          "July,11,8,5",
-          "August,10,7,4",
-          "Totals", ""
+          "Downloads,3: Most recent,Total",
+          "June,12,27",
+          "July,11,24",
+          "August,10,21", ""
         ].join("\n"), csv.to_s
       end
     end
