@@ -8,11 +8,53 @@ module Libsyn
       @input = input
     end
 
-    def to_s
+    def totals
+      episodes, downloads, months = parse(input)
+
+      datapoints = []
+
+      months.reverse.each do |month|
+        datapoints << {
+          "title" => month, "value" => downloads[month].inject(&:+)
+        }
+      end
+
+      {
+        "graph" => {
+          "title" => "Downloads",
+          "refreshEveryNSeconds" => 120,
+          "datasequences" => [{
+            "title" => "Total",
+            "datapoints" => datapoints
+          }]
+        }
+      }.to_json
+    end
+
+    def most_recent
+      episodes, downloads, months = parse(input)
+
+      datapoint = { "title" => months.first, "value" => downloads[months.first].first }
+
+      {
+        "graph" => {
+          "title" => episodes.first,
+          "refreshEveryNSeconds" => 120,
+          "datasequences" => [{
+            "title" => "Downloads",
+            "datapoints" => [ datapoint ]
+          }]
+        }
+      }.to_json
+    end
+
+    private
+
+    def parse(input)
       downloads = Hash.new { |h, k| h[k] = [] }
       episodes  = []
 
-      months = input.shift.slice(2..-2).map do |month|
+      months = input.dup.shift.slice(2..-2).map do |month|
         month.gsub("downloads__", "").capitalize
       end
 
@@ -25,31 +67,7 @@ module Libsyn
         0.upto(months.count).each { |i| downloads[months[i]] << dls[i].to_i }
       end
 
-      last_stats = []
-      total_stats = []
-
-      months.reverse.each do |month|
-        last_stats << { "title" => month, "value" => downloads[month].first }
-        total_stats << { "title" => month, "value" => downloads[month].inject(&:+) }
-      end
-
-      last_episode = {
-        "title" => episodes.first,
-        "datapoints" => last_stats
-      }
-
-      total_episodes = {
-        "title" => "Total",
-        "datapoints" => total_stats
-      }
-
-      {
-        "graph" => {
-          "title" => "Downloads",
-          "refreshEveryNSeconds" => 120,
-          "datasequences" => [ last_episode, total_episodes ]
-        }
-      }.to_json
+      [episodes, downloads, months]
     end
   end
 end
