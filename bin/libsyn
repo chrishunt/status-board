@@ -16,7 +16,7 @@ if email && password && show_id
   stats = Libsyn::Http.new(email, password, show_id).get
   json  = Libsyn::PanicJson.new(stats)
 
-  print totals ? json.totals : json.most_recent
+  print totals == "true" ? json.totals : json.most_recent
 else
   puts "usage: libsyn [email] [password] [show_id]"
 end
