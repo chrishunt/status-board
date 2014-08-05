@@ -12,10 +12,10 @@ email, password, show_id = *(
   end)
 
 if email && password && show_id
-  stats = StatusBoard::Libsyn.new(email, password, show_id).get
-  json  = StatusBoard::PanicJson.new(stats)
+  libsyn = StatusBoard::Libsyn.new(email, password, show_id)
+  libsyn.get
 
-  print json.to_s
+  print libsyn.to_s
 else
   puts "usage: status-board [email] [password] [show_id]"
 end
