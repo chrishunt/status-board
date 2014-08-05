@@ -1,6 +1,6 @@
 require 'json'
 
-module Libsyn
+module StatusBoard
   class PanicJson
     attr_reader :input
 

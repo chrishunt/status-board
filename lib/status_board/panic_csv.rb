@@ -1,6 +1,6 @@
 require 'csv'
 
-module Libsyn
+module StatusBoard
   class PanicCsv
     attr_reader :input
 

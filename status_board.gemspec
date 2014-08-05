@@ -1,16 +1,16 @@
 # coding: utf-8
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'libsyn/version'
+require 'status_board/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = "libsyn"
-  spec.version       = Libsyn::VERSION
+  spec.name          = "status-board"
+  spec.version       = StatusBoard::VERSION
   spec.authors       = ["Chris Hunt"]
   spec.email         = ["c@chrishunt.co"]
-  spec.summary       = %q{Libsyn}
-  spec.description   = %q{Libsyn}
-  spec.homepage      = "https://github.com/chrishunt/libsyn"
+  spec.summary       = %q{Status Board}
+  spec.description   = %q{Status Board}
+  spec.homepage      = "https://github.com/chrishunt/status-board"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")

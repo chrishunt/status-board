@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'libsyn/panic_csv'
+require 'status_board/panic_csv'
 
-module Libsyn
+module StatusBoard
   describe PanicCsv do
     describe '#to_s' do
       it 'returns a string in the correct format for Panic Status Board' do

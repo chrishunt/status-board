@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'libsyn/http'
+require 'status_board/http'
 
-module Libsyn
+module StatusBoard
   describe Http do
     describe '#get' do
       it 'gets a CSV' do

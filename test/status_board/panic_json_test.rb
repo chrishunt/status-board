@@ -1,7 +1,7 @@
 require 'test_helper'
-require 'libsyn/panic_json'
+require 'status_board/panic_json'
 
-module Libsyn
+module StatusBoard
   describe PanicJson do
     def libsyn_stats
       [[

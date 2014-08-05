@@ -2,7 +2,7 @@ require 'net/http'
 require 'uri'
 require 'csv'
 
-module Libsyn
+module StatusBoard
   class Http
     attr_reader :email, :password, :show_id
 
