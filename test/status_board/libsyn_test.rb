@@ -1,8 +1,8 @@
 require 'test_helper'
-require 'status_board/http'
+require 'status_board/libsyn'
 
 module StatusBoard
-  describe Http do
+  describe Libsyn do
     describe '#get' do
       it 'gets a CSV' do
         VCR.use_cassette('get') do
@@ -22,7 +22,7 @@ module StatusBoard
           ],[
             "2", "2014-07-25 04:33:45",
             "0", "2", "0", "2"
-          ]], Http.new('me@example.com', 'secret', '1234').get
+          ]], Libsyn.new('me@example.com', 'secret', '1234').get
         end
       end
     end

@@ -3,7 +3,7 @@ require 'uri'
 require 'csv'
 
 module StatusBoard
-  class Http
+  class Libsyn
     attr_reader :email, :password, :show_id
 
     HOST = 'three.libsyn.com'

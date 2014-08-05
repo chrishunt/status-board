@@ -12,7 +12,7 @@ email, password, show_id = *(
   end)
 
 if email && password && show_id
-  stats = StatusBoard::Http.new(email, password, show_id).get
+  stats = StatusBoard::Libsyn.new(email, password, show_id).get
   json  = StatusBoard::PanicJson.new(stats)
 
   print json.to_s
