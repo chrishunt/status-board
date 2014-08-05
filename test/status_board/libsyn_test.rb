@@ -5,7 +5,7 @@ module StatusBoard
   describe Libsyn do
     describe '#get' do
       it 'gets a CSV' do
-        VCR.use_cassette('get') do
+        VCR.use_cassette('libsyn/get') do
           assert_equal [[
             "item_title",
             "release_date",
