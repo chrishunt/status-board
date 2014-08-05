@@ -1,0 +1,77 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.chartbeat.com/live/recent/v3/?apikey=123&host=example.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 05 Aug 2014 23:16:33 GMT
+      Server:
+      - nginx/1.2.9
+      X-Content-Type-Options:
+      - nosniff
+      X-Memoryfly-Age:
+      - '1304623'
+      X-Memoryfly-Data-Confidence:
+      - '1.000000'
+      Content-Length:
+      - '2543'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '[{"domain": "example.com", "uid": "56947", "time_spent": 26.16,
+        "engaged_sec": 0, "pagetimer": 4431, "lng": 0.1667, "title": "Example Site
+        Podcast | Chris Hunt | example.com", "token": "CHfOcyDAHosFBNy759DVvtw2Br1yBs",
+        "write": 0, "platform": "desktop", "new": 1, "internal_referrer": "example.com\/2014\/07\/29\/why-i-use-vim\/",
+        "ping_decay": 270, "C": 0, "scroll_top": 0, "window_height": 874, "read":
+        0, "L": 0, "host": "example.com", "user": "CfrcQnC7Xpq3BDyFGW", "lat":
+        51.549999, "path": "example.com\/", "ip_address": "31.51.218.0", "page_height":
+        2685, "utc": 1407278772, "f": "00001", "country": "GB", "region": "A1", "o":
+        1440, "idle": 1, "user_agent": "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_9_4)
+        AppleWebKit\/537.36 (KHTML, like Gecko) Chrome\/36.0.1985.125 Safari\/537.36",
+        "os": "mac", "browser": "chrome"}, {"domain": "example.com", "uid":
+        "56947", "time_spent": 30.66, "engaged_sec": 0, "pagetimer": 8124, "lng":
+        -113.587303, "title": "1: Why I use Vim | Example Site Podcast | Chris Hunt
+        | example.com", "token": "DR6DlxB1gfCnZAtDHDy0pe4BI1ic9", "write": 0,
+        "platform": "desktop", "new": 1, "ping_decay": 270, "C": 0, "scroll_top":
+        0, "window_height": 774, "read": 0, "L": 0, "host": "example.com", "user":
+        "DYWmB_BCxUWmCvP1qn", "lat": 53.478199, "path": "example.com\/2014\/07\/29\/why-i-use-vim\/",
+        "ip_address": "50.65.133.0", "page_height": 1220, "utc": 1407278598, "f":
+        "00001", "referrer": "", "region": "AB", "o": 1280, "idle": 1, "user_agent":
+        "Mozilla\/5.0 (Macintosh; Intel Mac OS X 10_9_4) AppleWebKit\/537.36 (KHTML,
+        like Gecko) Chrome\/36.0.1985.125 Safari\/537.36", "country": "CA", "os":
+        "mac", "browser": "chrome"}, {"domain": "example.com", "uid": "56947",
+        "time_spent": 76.75, "engaged_sec": 15, "pagetimer": 1599, "lng": -77.061897,
+        "title": "1: Why I use Vim | Example Site Podcast | Chris Hunt | example.com",
+        "token": "p1aoPCfmTJq1V0Ev0btFTiYupa", "write": 0, "platform": "desktop",
+        "new": 1, "ping_decay": 270, "C": 0, "scroll_top": 0, "window_height": 1433,
+        "read": 0, "L": 0, "host": "example.com", "user": "BMoFPuDx86B5H3J_b",
+        "lat": 38.731499, "path": "example.com\/2014\/07\/29\/why-i-use-vim\/",
+        "ip_address": "98.169.246.0", "page_height": 1526, "utc": 1407275949, "f":
+        "00001", "referrer": "http:\/\/t.co\/6rEesQ4CW1", "region": "VA", "o": 2215,
+        "idle": 1, "user_agent": "Mozilla\/5.0 (Windows NT 6.3; WOW64; rv:31.0) Gecko\/20100101
+        Firefox\/31.0", "country": "US", "os": "windows", "browser": "firefox"}]'
+    http_version: 
+  recorded_at: Tue, 05 Aug 2014 23:16:33 GMT
+recorded_with: VCR 2.9.2
