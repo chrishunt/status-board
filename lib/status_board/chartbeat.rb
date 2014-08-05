@@ -16,11 +16,11 @@ module StatusBoard
     def summary
       path = "/live/recent/v3/?apikey=#{api_key}&host=#{domain}"
       resp, data = http.get(path)
-      visitors = JSON.parse(resp.body)
+      stats = JSON.parse(resp.body)
 
       result = "<table>"
 
-      visitors.each do |visitor|
+      stats.each do |visitor|
         result << "<tr>"
         result << "<td style='width:40px'>#{visitor['country']}</td>"
         result << "<td>#{visitor['title'].split('|').first.strip}</td>"
@@ -28,6 +28,25 @@ module StatusBoard
       end
 
       result << "</table>"
+    end
+
+    def visitors
+      path = "/live/quickstats/v3/?apikey=#{api_key}&host=#{domain}"
+      resp, data = http.get(path)
+      stats = JSON.parse(resp.body)
+
+      {
+        "graph" => {
+          "title" => "Visitors",
+          "refreshEveryNSeconds" => 10,
+          "datasequences" => [{
+            "title" => "healthyhacker.com",
+            "datapoints" => [
+              { "title" => "visitors", "value" => stats["people"] }
+            ]
+          }]
+        }
+      }.to_json
     end
 
     private

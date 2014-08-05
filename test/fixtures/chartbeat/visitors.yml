@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.chartbeat.com/live/quickstats/v3/?apikey=123&host=example.com
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json
+      Date:
+      - Tue, 05 Aug 2014 23:43:32 GMT
+      Server:
+      - nginx/1.2.9
+      X-Content-Type-Options:
+      - nosniff
+      X-Memoryfly-Age:
+      - '1306242'
+      X-Memoryfly-Data-Confidence:
+      - '1.000000'
+      Content-Length:
+      - '920'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"engaged_visit": {"hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "avg": 0.0,
+        "median": 0.0}, "engaged_time": {"hist": [0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0,
+        0], "avg": 11.0, "median": 30.0}, "links": 0, "people": 2, "read": 0, "writing_visit":
+        {"hist": [0, 0, 0, 0, 0, 0, 0, 0, 0, 0], "avg": 0, "median": 0}, "toppages":
+        [{"path": "example.com\/2014\/07\/29\/why-i-use-vim\/", "visitors":
+        1}, {"path": "example.com\/", "visitors": 1}], "direct": 0, "visits":
+        2, "recirc": 0, "subscr": 0, "platform_engaged": {"m": 0, "d": 0}, "article":
+        0, "pages": 2, "search": 0, "crowd": 0, "domload": {"hist": [0, 1, 0, 0, 1,
+        0, 0, 0, 0, 0, 0], "avg": 3015.0, "median": 5000.0}, "visit": {"hist": [0,
+        0, 0, 0, 0, 0, 0, 0, 0, 2], "avg": 78.835, "median": 30.0}, "write": 0, "platform":
+        {"m": 0, "d": 2}, "idle": 2, "internal": 1, "social": 1, "new": 2, "scroll":
+        {"hist": [1, 1, 1, 1, 1, 1, 2, 2, 2, 1], "avg": 5.077, "median": 6.0}}'
+    http_version: 
+  recorded_at: Tue, 05 Aug 2014 23:43:32 GMT
+recorded_with: VCR 2.9.2
