@@ -8,7 +8,7 @@ module StatusBoard
         VCR.use_cassette('chartbeat/summary') do
           chartbeat = Chartbeat.new "123", "example.com"
 
-          assert_equal "<table><tr><td style='width:40px'>GB</td><td>Example Site Podcast</td></tr><tr><td style='width:40px'>CA</td><td>1: Why I use Vim</td></tr><tr><td style='width:40px'>US</td><td>1: Why I use Vim</td></tr></table>",
+          assert_equal "<table><tr><td style='width:40px'><img src='flags/gb.png'></td><td>Example Site Podcast</td></tr><tr><td style='width:40px'><img src='flags/ca.png'></td><td>1: Why I use Vim</td></tr><tr><td style='width:40px'><img src='flags/us.png'></td><td>1: Why I use Vim</td></tr></table>",
           chartbeat.summary
         end
       end
