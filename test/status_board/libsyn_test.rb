@@ -59,7 +59,7 @@ module StatusBoard
             "title" => "Downloads",
             "refreshEveryNSeconds" => 600,
             "datasequences" => [{
-              "title" => "Total",
+              "title" => "Healthy Hacker",
               "datapoints" => [
                 { "title" => "June",   "value" => 27 },
                 { "title" => "July",   "value" => 24 },
@@ -77,7 +77,7 @@ module StatusBoard
 
         assert_equal ({
           "graph" => {
-            "title" => "Downloads",
+            "title" => "-",
             "refreshEveryNSeconds" => 60,
             "datasequences" => [{
               "title" => "3: Most recent",

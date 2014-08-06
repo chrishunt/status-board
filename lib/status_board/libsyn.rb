@@ -39,7 +39,7 @@ module StatusBoard
           "title" => "Downloads",
           "refreshEveryNSeconds" => 600,
           "datasequences" => [{
-            "title" => "Total",
+            "title" => "Healthy Hacker",
             "datapoints" => datapoints
           }]
         }
@@ -53,7 +53,7 @@ module StatusBoard
 
       {
         "graph" => {
-          "title" => "Downloads",
+          "title" => "-",
           "refreshEveryNSeconds" => 60,
           "datasequences" => [{
             "title" => episodes.first,
