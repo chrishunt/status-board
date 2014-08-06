@@ -37,7 +37,7 @@ module StatusBoard
       {
         "graph" => {
           "title" => "Downloads",
-          "refreshEveryNSeconds" => 120,
+          "refreshEveryNSeconds" => 600,
           "datasequences" => [{
             "title" => "Total",
             "datapoints" => datapoints
@@ -54,7 +54,7 @@ module StatusBoard
       {
         "graph" => {
           "title" => "Downloads",
-          "refreshEveryNSeconds" => 120,
+          "refreshEveryNSeconds" => 60,
           "datasequences" => [{
             "title" => episodes.first,
             "datapoints" => [{

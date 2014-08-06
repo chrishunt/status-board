@@ -57,7 +57,7 @@ module StatusBoard
         assert_equal ({
           "graph" => {
             "title" => "Downloads",
-            "refreshEveryNSeconds" => 120,
+            "refreshEveryNSeconds" => 600,
             "datasequences" => [{
               "title" => "Total",
               "datapoints" => [
@@ -78,7 +78,7 @@ module StatusBoard
         assert_equal ({
           "graph" => {
             "title" => "Downloads",
-            "refreshEveryNSeconds" => 120,
+            "refreshEveryNSeconds" => 60,
             "datasequences" => [{
               "title" => "3: Most recent",
               "datapoints" => [
