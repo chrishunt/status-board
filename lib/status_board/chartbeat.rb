@@ -23,7 +23,7 @@ module StatusBoard
       stats.each do |visitor|
         result << "<tr>"
         result << "<td style='width:40px'>"
-        result << "<img src='flags/#{visitor['country'].downcase}.png'>"
+        result << "<img src='/flags/#{visitor['country'].downcase}.png'>"
         result << "</td>"
         result << "<td>"
         result << (visitor['title'].split('|').first || domain).strip

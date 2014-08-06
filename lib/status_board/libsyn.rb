@@ -46,7 +46,7 @@ module StatusBoard
       }.to_json
     end
 
-    def most_recent
+    def recent
       episodes, downloads, months = parse(stats)
 
       downloads = months.collect { |month| downloads[month].first }.inject(&:+)
@@ -64,10 +64,6 @@ module StatusBoard
           }]
         }
       }.to_json
-    end
-
-    def to_s
-      [most_recent, totals].join "\n\n"
     end
 
     private

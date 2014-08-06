@@ -71,7 +71,7 @@ module StatusBoard
       end
     end
 
-    describe '#most_recent' do
+    describe '#recent' do
       it 'returns json for the most recent episode' do
         libsyn = Libsyn.new('', '', '', :stats => libsyn_stats)
 
@@ -86,7 +86,7 @@ module StatusBoard
               ]
             }]
           }
-        }), JSON.parse(libsyn.most_recent)
+        }), JSON.parse(libsyn.recent)
       end
     end
   end
