@@ -25,7 +25,9 @@ module StatusBoard
         result << "<td style='width:40px'>"
         result << "<img src='flags/#{visitor['country'].downcase}.png'>"
         result << "</td>"
-        result << "<td>#{visitor['title'].split('|').first.strip}</td>"
+        result << "<td>"
+        result << (visitor['title'].split('|').first || domain).strip
+        result << "</td>"
         result << "</tr>"
       end
 
