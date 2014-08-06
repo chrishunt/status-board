@@ -72,9 +72,10 @@ module StatusBoard
       ].join
 
       resp, data = http.get(path)
-
       stats  = JSON.parse(resp.body)["data"]
-      start  = Time.parse("#{stats["start"]} -0400") # Chartbeat is EST
+
+      # Chartbeat is EST and we want PST
+      start  = Time.parse("#{stats["start"]} -0400").utc - (60*60*7)
       series = stats[domain]["series"]
 
       {
