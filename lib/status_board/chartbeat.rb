@@ -23,6 +23,9 @@ module StatusBoard
       stats.each do |visitor|
         result << "<tr>"
         result << "<td style='width:40px'>"
+        result << "<img src='/browsers/#{visitor['browser'].downcase}.png'>"
+        result << "</td>"
+        result << "<td style='width:40px'>"
         result << "<img src='/flags/#{visitor['country'].downcase}.png'>"
         result << "</td>"
         result << "<td style='width:40px'>"
