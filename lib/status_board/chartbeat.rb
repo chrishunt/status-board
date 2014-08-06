@@ -42,6 +42,12 @@ module StatusBoard
       end
 
       result << "</table>"
+    rescue => e
+      result = "<table>"
+      result << "<tr><td>Error!!</td></tr>"
+      result << "<tr><td>#{e.inspect}</td></tr>"
+      result << "<tr><td>#{stats.inspect}</td></tr>"
+      result << "</table>"
     end
 
     def visitors
