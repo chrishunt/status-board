@@ -10,6 +10,10 @@ LIBSYN_EMAIL    = ENV['LIBSYN_EMAIL']
 LIBSYN_PASSWORD = ENV['LIBSYN_PASSWORD']
 LIBSYN_SHOW_ID  = ENV['LIBSYN_SHOW_ID']
 
+get '/' do
+  "good."
+end
+
 get '/chartbeat/visitors' do
   content_type 'application/json'
   StatusBoard::Chartbeat.new(CHARTBEAT_API_KEY, CHARTBEAT_DOMAIN).visitors
