@@ -34,5 +34,22 @@ module StatusBoard
         end
       end
     end
+
+    describe '#historical' do
+      it 'returns the historical number of visitors as json' do
+        VCR.use_cassette('chartbeat/historical') do
+          chartbeat = Chartbeat.new "123", "example.com"
+
+          now = Time.parse("2014-08-06 12:10:32 -0700")
+          result = JSON.parse(chartbeat.historical(now))["graph"]
+
+          assert_equal "Visitors", result["title"]
+          assert_equal 300, result["refreshEveryNSeconds"]
+
+          assert_equal ["Total", "Returning"],
+          result["datasequences"].map { |s| s["title"] }
+        end
+      end
+    end
   end
 end

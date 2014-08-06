@@ -1,6 +1,7 @@
 require 'net/http'
 require 'uri'
 require 'json'
+require 'time'
 
 module StatusBoard
   class Chartbeat
@@ -62,7 +63,45 @@ module StatusBoard
       }.to_json
     end
 
+    def historical(now = Time.now)
+      path = [
+        "/historical/traffic/series/",
+        "?apikey=#{api_key}&host=#{domain}",
+        "&start=#{(now - 86400).to_i}",
+        "&human=true&fields=new,return,people"
+      ].join
+
+      resp, data = http.get(path)
+
+      stats  = JSON.parse(resp.body)["data"]
+      start  = Time.parse("#{stats["start"]} -0400") # Chartbeat is EST
+      series = stats[domain]["series"]
+
+      {
+        "graph" => {
+          "title" => "Visitors",
+          "refreshEveryNSeconds" => 300,
+          "datasequences" => [{
+            "title" => "Total",
+            "datapoints" => time_with_series(start, series["people"])
+          },{
+            "title" => "Returning",
+            "datapoints" => time_with_series(start, series["return"])
+          }]
+        }
+      }.to_json
+    end
+
     private
+
+    def time_with_series(time, series)
+      series.map.with_index do |visitors, index|
+        {
+          "title" => (time + (5 * 60 * index)).strftime("%H:%M"),
+          "value" => visitors.to_i
+        }
+      end
+    end
 
     def http
       Net::HTTP.new HOST

@@ -1,0 +1,122 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: http://api.chartbeat.com/historical/traffic/series/?apikey=123&fields=new,return,people&host=example.com&human=true&start=1407265832
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Access-Control-Allow-Headers:
+      - Content-Type
+      Access-Control-Allow-Origin:
+      - "*"
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 06 Aug 2014 19:10:49 GMT
+      Etag:
+      - '"192c01025f5b9c93f4728c70bd6600ee939341a2"'
+      Server:
+      - nginx/1.2.9
+      X-Content-Type-Options:
+      - nosniff
+      X-Served-By:
+      - historicalapi03.chartbeat.net
+      Content-Length:
+      - '5916'
+      Connection:
+      - keep-alive
+    body:
+      encoding: UTF-8
+      string: '{"data": {"start": "2014-08-05 15:10:32", "frequency": 5, "end": "2014-08-07
+        00:00:00", "example.com": {"series": {"new": [null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, 1, 1, 2, 3, 1, 1, 1, 1, 1, null,
+        2, 2, 2, 2, 1, 2, 2, 1, 2, 3, 4, 4, 4, 3, 3, 3, 3, 4, 3, 3, 2, 1, 1, 2, 1,
+        null, null, null, null, null, null, null, 1, 1, 1, 1, 1, null, null, null,
+        null, 1, 1, 1, 2, 3, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 2,
+        2, 2, 3, 4, 2, 2, 2, 2, 2, 2, 2, 3, 4, 4, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3,
+        3, 3, 3, 2, 2, 2, 2, 3, 2, 2, 2, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, 1, 1, 1, 2, 2, 1, 1,
+        1, 1, 1, 1, 1, 1, null, null, null, null, null, null, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, 1,
+        1, 1, 1, 1, 1, 1, 1, null, 1, 1, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        1, null, null, 1, null, null, 1, null, null, null, null, null, null, 1, 1,
+        1, 1, 2, 2, 1, null, null, null, 1, 1, 1, 1, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null], "return": [null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, 1, 1, null, null, null, null, null, null, 1, 1, 1, 1, 1,
+        null, null, null, null, null, null, 1, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, 1, 2, 1, 2, 1, 2, 1, 1, 3,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        1, null, null, 1, 1, null, null, null, null, null, null, null, null, 1, 1,
+        1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1,
+        1, 1, 1, 1, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null], "people": [null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, 1, 1, 2, 3, 1, 1, 1, 1, 1, null, 2, 2, 2, 2, 1, 2, 2, 1, 2, 3,
+        4, 4, 4, 3, 3, 3, 3, 4, 3, 3, 2, 1, 1, 2, 1, null, null, 1, 1, null, null,
+        null, 1, 1, 1, 2, 2, 1, 1, 1, null, 1, 1, 1, 2, 3, 3, 1, 1, 1, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 3, 4, 2, 2, 2, 2, 2, 2, 3, 5, 5, 6, 5,
+        6, 5, 5, 7, 3, 3, 3, 3, 3, 3, 3, 3, 3, 2, 2, 2, 2, 3, 3, 3, 3, 1, 1, 1, 1,
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, null, null, null, null,
+        null, null, null, 1, 1, 1, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, null, null, null,
+        null, null, null, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 1,
+        1, 1, 1, 1, 1, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, 1, 1, 1, 1, 1, 1, 1, 1, null, 1, 1, 1,
+        null, null, 1, 1, null, null, null, null, null, null, null, null, 1, 1, 1,
+        1, 1, 1, 1, 3, 2, 2, 3, 2, 2, 3, 2, 2, 2, 2, 2, 2, 3, 3, 3, 3, 4, 3, 2, 1,
+        1, 1, 2, 1, 1, 1, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null,
+        null, null, null, null, null, null, null, null, null, null, null, null, null]}}}}'
+    http_version: 
+  recorded_at: Wed, 06 Aug 2014 19:10:49 GMT
+recorded_with: VCR 2.9.2

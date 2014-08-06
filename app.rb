@@ -30,6 +30,11 @@ get '/chartbeat/visitors' do
   chartbeat.visitors
 end
 
+get '/chartbeat/historical' do
+  content_type 'application/json'
+  chartbeat.historical
+end
+
 get '/chartbeat/summary' do
   chartbeat.summary
 end
