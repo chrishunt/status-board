@@ -48,3 +48,11 @@ get '/libsyn/totals' do
   content_type 'application/json'
   libsyn.totals
 end
+
+get '/libsyn/history' do
+  content_type 'application/json'
+  libsyn = StatusBoard::Libsyn.new \
+    LIBSYN_EMAIL, LIBSYN_PASSWORD, LIBSYN_SHOW_ID
+  libsyn.history
+end
+

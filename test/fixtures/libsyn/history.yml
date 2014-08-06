@@ -1,0 +1,118 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://three.libsyn.com/auth/login
+    body:
+      encoding: UTF-8
+      string: email=example.com&password=nope
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 302
+      message: Found
+    headers:
+      Date:
+      - Wed, 06 Aug 2014 20:43:56 GMT
+      Server:
+      - Apache/2.2.22 (Ubuntu)
+      Set-Cookie:
+      - libsyn-producer=u4ugd5eu6t15v0kl6e37hdt5u2; expires=Thu, 07-Aug-2014 20:43:56
+        GMT; path=/; domain=.libsyn.com
+      - network_id=242; path=/; domain=.libsyn.com
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Location:
+      - "/"
+      Vary:
+      - Accept-Encoding
+      X-Libsyn-Host:
+      - app-server1.libsyn.com
+      Content-Length:
+      - '26'
+      Connection:
+      - close
+      Content-Type:
+      - text/html
+    body:
+      encoding: UTF-8
+      string: ''
+    http_version: 
+  recorded_at: Wed, 06 Aug 2014 20:43:57 GMT
+- request:
+    method: get
+    uri: https://three.libsyn.com/lite/statistics/export/show_id/1234/type/daily-totals/target/show/id/1234
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Cookie:
+      - libsyn-producer=u4ugd5eu6t15v0kl6e37hdt5u2; expires=Thu, 07-Aug-2014 20:43:56
+        GMT; path=/; domain=.libsyn.com, network_id=242; path=/; domain=.libsyn.com
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 06 Aug 2014 20:43:57 GMT
+      Server:
+      - Apache/2.2.22 (Ubuntu)
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate, post-check=0, pre-check=0
+      Pragma:
+      - no-cache
+      Set-Cookie:
+      - network_id=242; path=/; domain=.libsyn.com
+      Content-Disposition:
+      - attachment ; filename="show_daily-totals_example_2014-08-06.csv"
+      Content-Length:
+      - '184'
+      Vary:
+      - Accept-Encoding
+      X-Libsyn-Host:
+      - app-server1.libsyn.com
+      Connection:
+      - close
+      Content-Type:
+      - text/csv
+    body:
+      encoding: UTF-8
+      string: |-
+        "date","year","month","day","total_downloads"
+        "2014-07-25",2014,"July",25,4
+        "2014-07-26",2014,"July",26,16
+        "2014-07-27",2014,"July",27,0
+        "2014-07-28",2014,"July",28,0
+        "2014-07-29",2014,"July",29,0
+        "2014-07-30",2014,"July",30,57
+        "2014-07-31",2014,"July",31,124
+        "2014-08-01",2014,"August",01,337
+        "2014-08-02",2014,"August",02,76
+        "2014-08-03",2014,"August",03,27
+        "2014-08-04",2014,"August",04,24
+        "2014-08-05",2014,"August",05,479
+        "2014-08-06",2014,"August",06,75
+    http_version: 
+  recorded_at: Wed, 06 Aug 2014 20:43:58 GMT
+recorded_with: VCR 2.9.2
