@@ -116,10 +116,10 @@ module StatusBoard
 
       {
         "graph" => {
-          "title" => "Downloads",
+          "title" => "Today",
           "refreshEveryNSeconds" => 60,
           "datasequences" => [{
-            "title" => "Today",
+            "title" => "Total Downloads",
             "datapoints" => [ datapoint ]
           }]
         }

@@ -97,10 +97,10 @@ module StatusBoard
 
           assert_equal ({
             "graph" => {
-              "title" => "Downloads",
+              "title" => "Today",
               "refreshEveryNSeconds" => 60,
               "datasequences" => [{
-                "title" => "Today",
+                "title" => "Total Downloads",
                 "datapoints" => [
                   { "title" => "08-07", "value" => "52" }
                 ]
