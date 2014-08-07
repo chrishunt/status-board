@@ -90,6 +90,27 @@ module StatusBoard
       end
     end
 
+    describe '#today' do
+      it 'returns json for total downloads today' do
+        VCR.use_cassette('libsyn/today') do
+          libsyn = Libsyn.new('me@example.com', 'secret', '1234')
+
+          assert_equal ({
+            "graph" => {
+              "title" => "Downloads",
+              "refreshEveryNSeconds" => 60,
+              "datasequences" => [{
+                "title" => "Today",
+                "datapoints" => [
+                  { "title" => "08-07", "value" => "52" }
+                ]
+              }]
+            }
+          }), JSON.parse(libsyn.today)
+        end
+      end
+    end
+
     describe '#history' do
       it 'returns json for the daily history of downloads' do
         VCR.use_cassette('libsyn/history') do

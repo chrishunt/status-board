@@ -96,6 +96,36 @@ module StatusBoard
       }.to_json
     end
 
+    def today
+      path = [ '',
+        'lite/statistics/export/show_id',  show_id,
+        'type/daily-totals/target/show/id', show_id
+      ].join('/')
+
+      resp, data = http.get(path, { 'Cookie' => cookie })
+
+      @stats = CSV.parse(resp.body)
+      stats.shift
+
+      datapoint = stats.map do |row|
+        date = row.first.split('-')[1..-1].join('-')
+        downloads = row.last
+
+        { "title" => date, "value" => downloads }
+      end.last
+
+      {
+        "graph" => {
+          "title" => "Downloads",
+          "refreshEveryNSeconds" => 60,
+          "datasequences" => [{
+            "title" => "Today",
+            "datapoints" => [ datapoint ]
+          }]
+        }
+      }.to_json
+    end
+
     private
 
     def parse(stats)
