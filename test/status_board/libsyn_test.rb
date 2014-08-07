@@ -78,7 +78,7 @@ module StatusBoard
         assert_equal ({
           "graph" => {
             "title" => "-",
-            "refreshEveryNSeconds" => 60,
+            "refreshEveryNSeconds" => 120,
             "datasequences" => [{
               "title" => "3: Most recent",
               "datapoints" => [

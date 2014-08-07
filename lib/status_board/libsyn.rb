@@ -54,7 +54,7 @@ module StatusBoard
       {
         "graph" => {
           "title" => "-",
-          "refreshEveryNSeconds" => 60,
+          "refreshEveryNSeconds" => 120,
           "datasequences" => [{
             "title" => episodes.first,
             "datapoints" => [{
