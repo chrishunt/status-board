@@ -5,18 +5,17 @@ require 'json'
 
 module StatusBoard
   class Libsyn
-    attr_reader :email, :password, :show_id, :stats
+    attr_reader :email, :password, :show_id
 
     HOST = 'three.libsyn.com'
 
-    def initialize(email, password, show_id, options = {})
+    def initialize(email, password, show_id)
       @email    = email
       @password = password
       @show_id  = show_id
-      @stats    = options[:stats]
     end
 
-    def get
+    def totals
       path = [ '',
         'lite/statistics/export/show_id',  show_id,
         'type/three-month/target/show/id', show_id
@@ -24,10 +23,8 @@ module StatusBoard
 
       resp, data = http.get(path, { 'Cookie' => cookie })
 
-      @stats = CSV.parse(resp.body)
-    end
+      stats = CSV.parse(resp.body)
 
-    def totals
       episodes, downloads, months = parse(stats)
 
       datapoints = months.reverse.collect do |month|
@@ -47,6 +44,15 @@ module StatusBoard
     end
 
     def recent
+      path = [ '',
+        'lite/statistics/export/show_id',  show_id,
+        'type/three-month/target/show/id', show_id
+      ].join('/')
+
+      resp, data = http.get(path, { 'Cookie' => cookie })
+
+      stats = CSV.parse(resp.body)
+
       episodes, downloads, months = parse(stats)
 
       downloads = months.collect { |month| downloads[month].first }.inject(&:+)
@@ -74,7 +80,7 @@ module StatusBoard
 
       resp, data = http.get(path, { 'Cookie' => cookie })
 
-      @stats = CSV.parse(resp.body)
+      stats = CSV.parse(resp.body)
       stats.shift
 
       datapoints = stats.map do |row|
@@ -104,7 +110,7 @@ module StatusBoard
 
       resp, data = http.get(path, { 'Cookie' => cookie })
 
-      @stats = CSV.parse(resp.body)
+      stats = CSV.parse(resp.body)
       stats.shift
 
       datapoint = stats.map do |row|
@@ -129,25 +135,23 @@ module StatusBoard
     private
 
     def parse(stats)
-      @parse ||= begin
-        downloads = Hash.new { |h, k| h[k] = [] }
-        episodes  = []
+      downloads = Hash.new { |h, k| h[k] = [] }
+      episodes  = []
 
-        months = stats.dup.shift.slice(2..-2).map do |month|
-          month.gsub("downloads__", "").capitalize
-        end
-
-        stats.each do |line|
-          episode, _, *dls = *line
-          next if episode.split(':').count == 1
-
-          episodes << episode
-
-          0.upto(months.count).each { |i| downloads[months[i]] << dls[i].to_i }
-        end
-
-        [episodes, downloads, months]
+      months = stats.dup.shift.slice(2..-2).map do |month|
+        month.gsub("downloads__", "").capitalize
       end
+
+      stats.each do |line|
+        episode, _, *dls = *line
+        next if episode.split(':').count == 1
+
+        episodes << episode
+
+        0.upto(months.count).each { |i| downloads[months[i]] << dls[i].to_i }
+      end
+
+      [episodes, downloads, months]
     end
 
     def cookie

@@ -38,13 +38,11 @@ end
 
 get '/libsyn/recent' do
   content_type 'application/json'
-  libsyn.get
   libsyn.recent
 end
 
 get '/libsyn/totals' do
   content_type 'application/json'
-  libsyn.get
   libsyn.totals
 end
 
