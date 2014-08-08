@@ -1,4 +1,5 @@
 require 'sinatra'
+require 'sinatra/namespace'
 
 require_relative 'lib/status_board/config'
 require_relative 'lib/status_board/libsyn'
@@ -13,39 +14,43 @@ def chartbeat
 end
 
 get '/' do
-  "good."
+  'good.'
 end
 
-get '/chartbeat/visitors' do
-  content_type 'application/json'
-  chartbeat.visitors
+namespace '/chartbeat' do
+  get '/visitors' do
+    content_type 'application/json'
+    chartbeat.visitors
+  end
+
+  get '/historical' do
+    content_type 'application/json'
+    chartbeat.historical
+  end
+
+  get '/summary' do
+    chartbeat.summary
+  end
 end
 
-get '/chartbeat/historical' do
-  content_type 'application/json'
-  chartbeat.historical
-end
+namespace '/libsyn' do
+  get '/recent' do
+    content_type 'application/json'
+    libsyn.recent
+  end
 
-get '/chartbeat/summary' do
-  chartbeat.summary
-end
+  get '/totals' do
+    content_type 'application/json'
+    libsyn.totals
+  end
 
-get '/libsyn/recent' do
-  content_type 'application/json'
-  libsyn.recent
-end
+  get '/history' do
+    content_type 'application/json'
+    libsyn.history
+  end
 
-get '/libsyn/totals' do
-  content_type 'application/json'
-  libsyn.totals
-end
-
-get '/libsyn/history' do
-  content_type 'application/json'
-  libsyn.history
-end
-
-get '/libsyn/today' do
-  content_type 'application/json'
-  libsyn.today
+  get '/today' do
+    content_type 'application/json'
+    libsyn.today
+  end
 end
