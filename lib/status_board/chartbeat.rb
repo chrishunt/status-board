@@ -4,17 +4,17 @@ require 'time'
 
 module StatusBoard
   class Chartbeat
-    attr_reader :api_key, :domain
+    attr_reader :api_key, :host
 
     HOST = 'api.chartbeat.com'
 
-    def initialize(api_key, domain)
+    def initialize(api_key, host)
       @api_key = api_key
-      @domain = domain
+      @host = host
     end
 
     def summary
-      stats = get "/live/recent/v3/?apikey=#{api_key}&host=#{domain}"
+      stats = get "/live/recent/v3/?apikey=#{api_key}&host=#{host}"
 
       result = "<table>"
 
@@ -33,7 +33,7 @@ module StatusBoard
         result << visitor['region'].to_s
         result << "</td>"
         result << "<td>"
-        result << (visitor['title'].split('|').first || domain).strip
+        result << (visitor['title'].split('|').first || host).strip
         result << "</td>"
         result << "</tr>"
       end
@@ -47,7 +47,7 @@ module StatusBoard
     end
 
     def visitors
-      stats = get "/live/quickstats/v3/?apikey=#{api_key}&host=#{domain}"
+      stats = get "/live/quickstats/v3/?apikey=#{api_key}&host=#{host}"
 
       {
         "graph" => {
@@ -66,14 +66,14 @@ module StatusBoard
     def historical(now = Time.now)
       stats = get([
         "/historical/traffic/series/",
-        "?apikey=#{api_key}&host=#{domain}",
+        "?apikey=#{api_key}&host=#{host}",
         "&start=#{(now - 86400).to_i}",
         "&human=true&fields=new,return,people"
       ].join)["data"]
 
       # Chartbeat is EST and we want PST
       start  = Time.parse("#{stats["start"]} -0400").utc - (60*60*7)
-      series = stats[domain]["series"]
+      series = stats[host]["series"]
 
       {
         "graph" => {
