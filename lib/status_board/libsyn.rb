@@ -16,15 +16,11 @@ module StatusBoard
     end
 
     def totals
-      stats = get [ '',
-        'lite/statistics/export/show_id',  show_id,
-        'type/three-month/target/show/id', show_id
-      ].join('/')
-
-      episodes, downloads, months = parse(stats)
-
-      datapoints = months.reverse.collect do |month|
-        { "title" => month, "value" => downloads[month].inject(&:+) }
+      datapoints = monthly_stats[:months].reverse.collect do |month|
+        {
+          "title" => month,
+          "value" => monthly_stats[:downloads][month].inject(&:+)
+        }
       end
 
       {
@@ -40,24 +36,19 @@ module StatusBoard
     end
 
     def recent
-      stats = get [ '',
-        'lite/statistics/export/show_id',  show_id,
-        'type/three-month/target/show/id', show_id
-      ].join('/')
-
-      episodes, downloads, months = parse(stats)
-
-      downloads = months.collect { |month| downloads[month].first }.inject(&:+)
+      recent_downloads = monthly_stats[:months].collect do |month|
+        monthly_stats[:downloads][month].first
+      end.inject(&:+)
 
       {
         "graph" => {
           "title" => "-",
           "refreshEveryNSeconds" => 120,
           "datasequences" => [{
-            "title" => episodes.first,
+            "title" => monthly_stats[:episodes].first,
             "datapoints" => [{
-              "title" => months.first,
-              "value" => downloads
+              "title" => monthly_stats[:months].first,
+              "value" => recent_downloads
             }]
           }]
         }
@@ -65,18 +56,8 @@ module StatusBoard
     end
 
     def history
-      stats = get [ '',
-        'lite/statistics/export/show_id',  show_id,
-        'type/daily-totals/target/show/id', show_id
-      ].join('/')
-
-      stats.shift
-
-      datapoints = stats.map do |row|
-        date = row.first.split('-')[1..-1].join('-')
-        downloads = row.last
-
-        { "title" => date, "value" => downloads }
+      datapoints = daily_stats[:dates].map do |date|
+        { "title" => date, "value" => daily_stats[:downloads][date] }
       end
 
       {
@@ -92,18 +73,8 @@ module StatusBoard
     end
 
     def today
-      stats = get [ '',
-        'lite/statistics/export/show_id',  show_id,
-        'type/daily-totals/target/show/id', show_id
-      ].join('/')
-
-      stats.shift
-
-      datapoint = stats.map do |row|
-        date = row.first.split('-')[1..-1].join('-')
-        downloads = row.last
-
-        { "title" => date, "value" => downloads }
+      datapoint = daily_stats[:dates].map do |date|
+        { "title" => date, "value" => daily_stats[:downloads][date] }
       end.last
 
       {
@@ -120,24 +91,61 @@ module StatusBoard
 
     private
 
-    def parse(stats)
-      downloads = Hash.new { |h, k| h[k] = [] }
-      episodes  = []
+    def daily_stats
+      @daily_stats ||= begin
+        result = {
+          :dates => [],
+          :downloads => Hash.new { |h, k| h[k] = [] }
+        }
 
-      months = stats.dup.shift.slice(2..-2).map do |month|
-        month.gsub("downloads__", "").capitalize
+        stats = get [ '',
+          'lite/statistics/export/show_id',  show_id,
+          'type/daily-totals/target/show/id', show_id
+        ].join('/')
+
+        stats.shift
+
+        datapoints = stats.map do |row|
+          date = row.first.split('-')[1..-1].join('-')
+
+          result[:dates] << date
+          result[:downloads][date] = row.last
+        end
+
+        result
       end
+    end
 
-      stats.each do |line|
-        episode, _, *dls = *line
-        next if episode.split(':').count == 1
+    def monthly_stats
+      @monthly_stats ||= begin
+        result = {
+          :episodes  => [],
+          :months    => [],
+          :downloads => Hash.new { |h, k| h[k] = [] }
+        }
 
-        episodes << episode
+        stats = get [ '',
+          'lite/statistics/export/show_id',  show_id,
+          'type/three-month/target/show/id', show_id
+        ].join('/')
 
-        0.upto(months.count).each { |i| downloads[months[i]] << dls[i].to_i }
+        result[:months] = stats.shift.slice(2..-2).map do |month|
+          month.gsub("downloads__", "").capitalize
+        end
+
+        stats.each do |line|
+          episode, _, *dls = *line
+          next if episode.split(':').count == 1
+
+          result[:episodes] << episode
+
+          0.upto(result[:months].count).each do |i|
+            result[:downloads][result[:months][i]] << dls[i].to_i
+          end
+        end
+
+        result
       end
-
-      [episodes, downloads, months]
     end
 
     def get(path)
