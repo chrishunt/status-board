@@ -10,10 +10,10 @@ module StatusBoard
 
           assert_equal ({
             "graph" => {
-              "title" => "Downloads",
+              "title" => "Monthly",
               "refreshEveryNSeconds" => 600,
               "datasequences" => [{
-                "title" => "Healthy Hacker",
+                "title" => "Downloads",
                 "datapoints" => [
                   {"title" => "June",   "value" => 0},
                   {"title" => "July",   "value" => 181},

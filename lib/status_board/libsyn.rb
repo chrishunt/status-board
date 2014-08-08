@@ -33,10 +33,10 @@ module StatusBoard
 
       {
         "graph" => {
-          "title" => "Downloads",
+          "title" => "Monthly",
           "refreshEveryNSeconds" => 600,
           "datasequences" => [{
-            "title" => "Healthy Hacker",
+            "title" => "Downloads",
             "datapoints" => datapoints
           }]
         }
