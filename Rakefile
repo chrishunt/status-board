@@ -9,7 +9,7 @@ task :server do
   system 'bundle exec rackup -p 9292 config.ru'
 end
 
-desc 'Load heroku config into local env'
+desc 'Print bash friendly version of Heroku config'
 task :config do
   vars = {
     "CHARTBEAT_API_KEY" => "",
