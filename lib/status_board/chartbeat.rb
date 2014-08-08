@@ -15,9 +15,7 @@ module StatusBoard
     end
 
     def summary
-      path = "/live/recent/v3/?apikey=#{api_key}&host=#{domain}"
-      resp, data = http.get(path)
-      stats = JSON.parse(resp.body)
+      stats = get "/live/recent/v3/?apikey=#{api_key}&host=#{domain}"
 
       result = "<table>"
 
@@ -45,15 +43,12 @@ module StatusBoard
     rescue => e
       result = "<table>"
       result << "<tr><td>Error!!</td></tr>"
-      result << "<tr><td>#{e.inspect}</td></tr>"
       result << "<tr><td>#{stats.inspect}</td></tr>"
       result << "</table>"
     end
 
     def visitors
-      path = "/live/quickstats/v3/?apikey=#{api_key}&host=#{domain}"
-      resp, data = http.get(path)
-      stats = JSON.parse(resp.body)
+      stats = get "/live/quickstats/v3/?apikey=#{api_key}&host=#{domain}"
 
       {
         "graph" => {
@@ -70,15 +65,12 @@ module StatusBoard
     end
 
     def historical(now = Time.now)
-      path = [
+      stats = get([
         "/historical/traffic/series/",
         "?apikey=#{api_key}&host=#{domain}",
         "&start=#{(now - 86400).to_i}",
         "&human=true&fields=new,return,people"
-      ].join
-
-      resp, data = http.get(path)
-      stats  = JSON.parse(resp.body)["data"]
+      ].join)["data"]
 
       # Chartbeat is EST and we want PST
       start  = Time.parse("#{stats["start"]} -0400").utc - (60*60*7)
@@ -110,8 +102,9 @@ module StatusBoard
       end
     end
 
-    def http
-      Net::HTTP.new HOST
+    def get(path)
+      resp, data = Net::HTTP.new(HOST).get(path)
+      JSON.parse(resp.body)
     end
   end
 end
