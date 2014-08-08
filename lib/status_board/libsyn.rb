@@ -16,14 +16,10 @@ module StatusBoard
     end
 
     def totals
-      path = [ '',
+      stats = get [ '',
         'lite/statistics/export/show_id',  show_id,
         'type/three-month/target/show/id', show_id
       ].join('/')
-
-      resp, data = http.get(path, { 'Cookie' => cookie })
-
-      stats = CSV.parse(resp.body)
 
       episodes, downloads, months = parse(stats)
 
@@ -44,14 +40,10 @@ module StatusBoard
     end
 
     def recent
-      path = [ '',
+      stats = get [ '',
         'lite/statistics/export/show_id',  show_id,
         'type/three-month/target/show/id', show_id
       ].join('/')
-
-      resp, data = http.get(path, { 'Cookie' => cookie })
-
-      stats = CSV.parse(resp.body)
 
       episodes, downloads, months = parse(stats)
 
@@ -73,14 +65,11 @@ module StatusBoard
     end
 
     def history
-      path = [ '',
+      stats = get [ '',
         'lite/statistics/export/show_id',  show_id,
         'type/daily-totals/target/show/id', show_id
       ].join('/')
 
-      resp, data = http.get(path, { 'Cookie' => cookie })
-
-      stats = CSV.parse(resp.body)
       stats.shift
 
       datapoints = stats.map do |row|
@@ -103,14 +92,11 @@ module StatusBoard
     end
 
     def today
-      path = [ '',
+      stats = get [ '',
         'lite/statistics/export/show_id',  show_id,
         'type/daily-totals/target/show/id', show_id
       ].join('/')
 
-      resp, data = http.get(path, { 'Cookie' => cookie })
-
-      stats = CSV.parse(resp.body)
       stats.shift
 
       datapoint = stats.map do |row|
@@ -154,23 +140,20 @@ module StatusBoard
       [episodes, downloads, months]
     end
 
-    def cookie
-      @cookie ||= begin
-        resp, data = http.post \
-          '/auth/login',
-          "email=#{URI.encode(email)}&password=#{URI.encode(password)}",
-          { 'Content-Type'=> 'application/x-www-form-urlencoded' }
+    def get(path)
+      http = Net::HTTP.new(HOST, 443)
+      http.use_ssl = true
 
-        resp.response['set-cookie']
-      end
-    end
+      response, data = http.post \
+        '/auth/login',
+        "email=#{URI.encode(email)}&password=#{URI.encode(password)}",
+        { 'Content-Type'=> 'application/x-www-form-urlencoded' }
 
-    def http
-      @http ||= begin
-        http = Net::HTTP.new(HOST, 443)
-        http.use_ssl = true
-        http
-      end
+      cookie = response.response['set-cookie']
+
+      response, data = http.get(path, { 'Cookie' => cookie })
+
+      CSV.parse(response.body)
     end
   end
 end
