@@ -18,39 +18,23 @@ get '/' do
 end
 
 namespace '/chartbeat' do
-  get '/visitors' do
-    content_type 'application/json'
-    chartbeat.visitors
-  end
-
-  get '/historical' do
-    content_type 'application/json'
-    chartbeat.historical
-  end
-
   get '/summary' do
     chartbeat.summary
+  end
+
+  %w[visitors historical].each do |action|
+    get "/#{action}" do
+      content_type 'application/json'
+      chartbeat.send action
+    end
   end
 end
 
 namespace '/libsyn' do
-  get '/recent' do
-    content_type 'application/json'
-    libsyn.recent
-  end
-
-  get '/totals' do
-    content_type 'application/json'
-    libsyn.totals
-  end
-
-  get '/history' do
-    content_type 'application/json'
-    libsyn.history
-  end
-
-  get '/today' do
-    content_type 'application/json'
-    libsyn.today
+  %w[recent totals history today].each do |action|
+    get "/#{action}" do
+      content_type 'application/json'
+      libsyn.send action
+    end
   end
 end
