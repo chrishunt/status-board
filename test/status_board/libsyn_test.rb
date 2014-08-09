@@ -11,9 +11,11 @@ module StatusBoard
           assert_equal ({
             "graph" => {
               "title" => "Monthly",
+              "total" => true,
               "refreshEveryNSeconds" => 600,
               "datasequences" => [{
                 "title" => "Downloads",
+                "color" => "yellow",
                 "datapoints" => [
                   {"title" => "June",   "value" => 0},
                   {"title" => "July",   "value" => 181},
@@ -79,6 +81,7 @@ module StatusBoard
               "refreshEveryNSeconds"=>600,
               "datasequences"=> [{
                 "title"=>"Downloads",
+                "color" => "orange",
                 "datapoints"=>[
                   { "title" => "07-25", "value" => "4" },
                   { "title" => "07-26", "value" => "16" },

@@ -26,9 +26,11 @@ module StatusBoard
       {
         "graph" => {
           "title" => "Monthly",
+          "total" => true,
           "refreshEveryNSeconds" => 600,
           "datasequences" => [{
             "title" => "Downloads",
+            "color" => "yellow",
             "datapoints" => datapoints
           }]
         }
@@ -66,6 +68,7 @@ module StatusBoard
           "refreshEveryNSeconds" => 600,
           "datasequences" => [{
             "title" => "Downloads",
+            "color" => "orange",
             "datapoints" => datapoints
           }]
         }
