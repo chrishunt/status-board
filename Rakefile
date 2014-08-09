@@ -13,7 +13,6 @@ desc 'Print bash friendly version of Heroku config'
 task :config do
   vars = {
     "CHARTBEAT_API_KEY" => "",
-    "CHARTBEAT_DOMAIN"  => "",
     "LIBSYN_EMAIL"      => "",
     "LIBSYN_PASSWORD"   => "",
     "LIBSYN_SHOW_ID"    => ""

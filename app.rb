@@ -9,8 +9,8 @@ def libsyn
   StatusBoard::Libsyn.new LIBSYN_EMAIL, LIBSYN_PASSWORD, LIBSYN_SHOW_ID
 end
 
-def chartbeat
-  StatusBoard::Chartbeat.new CHARTBEAT_API_KEY, CHARTBEAT_DOMAIN
+def chartbeat(host)
+  StatusBoard::Chartbeat.new CHARTBEAT_API_KEY, host
 end
 
 get '/' do
@@ -18,14 +18,14 @@ get '/' do
 end
 
 namespace '/chartbeat' do
-  get '/summary' do
-    chartbeat.summary
+  get '/summary/:host' do
+    chartbeat(params[:host]).summary
   end
 
   %w[visitors historical].each do |action|
-    get "/#{action}" do
+    get "/#{action}/:host" do
       content_type 'application/json'
-      chartbeat.send action
+      chartbeat(params[:host]).send action
     end
   end
 end
