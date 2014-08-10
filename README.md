@@ -2,55 +2,122 @@
 
 ### Your very own status board API
 
-Create your own API to use with [Panic Status
-Board](http://panic.com/statusboard).
+For use with the [Panic Status Board](http://panic.com/statusboard)
 
-## Deploy to Heroku
+![](screenshots/screenshot-placed.png)
+
+## Getting started
+
+Your status board is already setup! Pull it down, deploy it on heroku, and take
+a look.
 
 ```bash
 $ git clone https://github.com/chrishunt/status-board.git
 $ cd status-board
 $ heroku create
-
-$ heroku config:set \
-  CHARTBEAT_API_KEY="YOUR_CHARTBEAT_API_KEY" \
-  LIBSYN_EMAIL="YOUR_LIBSYN_EMAIL" \
-  LIBSYN_PASSWORD="YOUR_LIBSYN_PASSWORD" \
-  LIBSYN_SHOW_ID="YOUR_LIBSYN_SHOW_ID"
-
 $ git push heroku master
 $ heroku open
 ```
 
-## What do I get?
+## Configuration
 
-**`GET /chartbeat/summary`**
+### Chartbeat Analytics
 
-HTML table summary of all current visitors.
+If you'd like to see Chartbeat Analytics, you'll need to add a Chartbeat API
+key to your heroku environment. You can generate one with the correct
+permissions on the Chartbeat [API key manager](https://chartbeat.com/apikeys/).
+Make sure you generate a key that works with all domains that you want to
+monitor.
 
-**`GET /chartbeat/visitors`**
+```bash
+$ heroku config:set \
+  CHARTBEAT_API_KEY="YOUR_CHARTBEAT_API_KEY"
+```
 
-JSON graph (count) of all current visitors.
+### Libsyn Podcast Hosting
 
-**`GET /chartbeat/historical`**
+Libsyn doesn't actually have an API, but it *does* let you download many
+different CSV summaries. We download these CSV summaries for you in the
+background, parse them, and make them status board friendly.
 
-JSON hourly graph history of total and returning visitors.
+You'll need to configure Heroku with your login email, password, and show ID.
 
-**`GET /libsyn/recent`**
+```bash
+$ heroku config:set \
+  LIBSYN_EMAIL="YOUR_LIBSYN_EMAIL" \
+  LIBSYN_PASSWORD="YOUR_LIBSYN_PASSWORD" \
+  LIBSYN_SHOW_ID="YOUR_LIBSYN_SHOW_ID"
+```
 
-JSON graph (count) of total downloads for latest episode.
+If you don't know your show ID, visit the [stats
+page](http://four.libsyn.com/stats) and you'll see it in the URL:
 
-**`GET /libsyn/totals`**
+```
+http://four.libsyn.com/stats/general/target/show/id/:show_id
+```
 
-JSON graph count of total downloads for the last 3 months.
+## What APIs do I get?
 
-**`GET /libsyn/history`**
+### Chartbeat Analytics
 
-JSON graph of total daily downloads.
+```
+GET /chartbeat/summary/:host
+```
 
-**`GET /libsyn/today`**
+Table summary of current visitors for `:host`
 
-JSON graph (count) of total downloads for today.
+```
+GET /chartbeat/visitors/:host
+```
+
+Count of current visitors for `:host`
+
+```
+GET /chartbeat/historical/:host
+```
+
+Hourly graph of total/returning visitors for `:host`
+
+### Libsyn Podcast Hosting
+
+```
+GET /libsyn/today
+```
+
+Count of total downloads for today
+
+```
+GET /libsyn/recent
+```
+
+Count of total downloads for latest episode
+
+```
+GET /libsyn/history
+```
+
+Graph of total daily downloads
+
+```
+GET /libsyn/totals
+```
+
+Graph of total downloads for each of the last 3 months
+
+## How do I make my own?
+
+Status board supports 3 types of custom panels:
+
+  - [Graph](http://panic.com/statusboard/docs/graph_tutorial.pdf)
+  - [Table](http://panic.com/statusboard/docs/table_tutorial.pdf)
+  - [DIY](http://panic.com/statusboard/docs/diy_tutorial.pdf)
+
+To create your own panel, wrap the API of your choice and output in one of the
+three supported formats. For an example, see how we do it for
+[Chartbeat](https://github.com/chrishunt/status-board/blob/update-readms/lib/status_board/chartbeat.rb).
+
+After you have the wrapper, add a route in
+[`app.rb`](https://github.com/chrishunt/status-board/blob/update-readms/app.rb)
 
 ## Contributing
 Please see the [Contributing
