@@ -8,7 +8,7 @@ For use with the [Panic Status Board](http://panic.com/statusboard)
 
 ## Getting started
 
-Your status board is already setup! Pull it down, deploy it on heroku, and take
+Your status board is already setup! Pull it down, deploy it on Heroku, and take
 a look.
 
 ```bash
@@ -19,44 +19,16 @@ $ git push heroku master
 $ heroku open
 ```
 
-## Configuration
-
-### Chartbeat Analytics
-
-If you'd like to see Chartbeat Analytics, you'll need to add a Chartbeat API
-key to your heroku environment. You can generate one with the correct
-permissions on the Chartbeat [API key manager](https://chartbeat.com/apikeys/).
-Make sure you generate a key that works with all domains that you want to
-monitor.
-
-```bash
-$ heroku config:set \
-  CHARTBEAT_API_KEY="YOUR_CHARTBEAT_API_KEY"
-```
-
-### Libsyn Podcast Hosting
-
-Libsyn doesn't actually have an API, but it *does* let you download many
-different CSV summaries. We download these CSV summaries for you in the
-background, parse them, and make them status board friendly.
-
-You'll need to configure Heroku with your login email, password, and show ID.
-
-```bash
-$ heroku config:set \
-  LIBSYN_EMAIL="YOUR_LIBSYN_EMAIL" \
-  LIBSYN_PASSWORD="YOUR_LIBSYN_PASSWORD" \
-  LIBSYN_SHOW_ID="YOUR_LIBSYN_SHOW_ID"
-```
-
-If you don't know your show ID, visit the [stats
-page](http://four.libsyn.com/stats) and you'll see it in the URL:
-
-```
-http://four.libsyn.com/stats/general/target/show/id/:show_id
-```
-
 ## What APIs do I get?
+
+I made these APIs to help me watch folks listen to [Healthy
+Hacker](http://www.healthyhacker.com/), so right now, all you get is [Chartbeat
+Analytics](https://chartbeat.com) and [Libsyn Podcast
+Hosting](http://www.libsyn.com/).
+
+Want more? Woo! Me too. [Add your
+own](https://github.com/chrishunt/status-board#how-do-i-make-my-own) and send
+me a PR.
 
 ### Chartbeat Analytics
 
@@ -103,6 +75,43 @@ GET /libsyn/totals
 ```
 
 Graph of total downloads for each of the last 3 months
+
+## Configuration
+
+### Chartbeat Analytics
+
+If you'd like to see Chartbeat Analytics, you'll need to add a Chartbeat API
+key to your Heroku environment. You can generate one with the correct
+permissions on the Chartbeat [API key manager](https://chartbeat.com/apikeys/).
+Make sure you generate a key that works with all domains that you want to
+monitor.
+
+```bash
+$ heroku config:set \
+  CHARTBEAT_API_KEY="YOUR_CHARTBEAT_API_KEY"
+```
+
+### Libsyn Podcast Hosting
+
+Libsyn doesn't actually have an API, but it *does* let you download many
+different CSV summaries. We download these CSV summaries for you in the
+background, parse them, and make them status board friendly.
+
+You'll need to configure Heroku with your login email, password, and show ID.
+
+```bash
+$ heroku config:set \
+  LIBSYN_EMAIL="YOUR_LIBSYN_EMAIL" \
+  LIBSYN_PASSWORD="YOUR_LIBSYN_PASSWORD" \
+  LIBSYN_SHOW_ID="YOUR_LIBSYN_SHOW_ID"
+```
+
+If you don't know your show ID, visit the [stats
+page](http://four.libsyn.com/stats) and you'll see it in the URL:
+
+```
+http://four.libsyn.com/stats/general/target/show/id/:show_id
+```
 
 ## How do I make my own?
 
