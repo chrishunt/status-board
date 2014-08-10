@@ -14,7 +14,7 @@ def chartbeat(host)
 end
 
 get '/' do
-  'good.'
+  send_file 'public/index.html'
 end
 
 namespace '/chartbeat' do
