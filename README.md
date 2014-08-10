@@ -123,10 +123,10 @@ Status board supports 3 types of custom panels:
 
 To create your own panel, wrap the API of your choice and output in one of the
 three supported formats. For an example, see how we do it for
-[Chartbeat](https://github.com/chrishunt/status-board/blob/update-readms/lib/status_board/chartbeat.rb).
+[Chartbeat](https://github.com/chrishunt/status-board/blob/master/lib/status_board/chartbeat.rb).
 
 After you have the wrapper, add a route in
-[`app.rb`](https://github.com/chrishunt/status-board/blob/update-readms/app.rb)
+[`app.rb`](https://github.com/chrishunt/status-board/blob/master/app.rb)
 
 ## Contributing
 Please see the [Contributing
