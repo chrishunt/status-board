@@ -1,15 +1,22 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    addressable (2.5.0)
+      public_suffix (~> 2.0, >= 2.0.2)
     backports (3.6.0)
     coderay (1.1.0)
+    crack (0.4.3)
+      safe_yaml (~> 1.0.0)
+    hashdiff (0.2.3)
     kgio (2.9.2)
     method_source (0.8.2)
+    minitest (5.10.1)
     multi_json (1.10.1)
     pry (0.10.0)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    public_suffix (2.0.4)
     rack (1.5.2)
     rack-protection (1.5.3)
       rack
@@ -17,6 +24,7 @@ GEM
       rack (>= 1.0)
     raindrops (0.13.0)
     rake (10.3.2)
+    safe_yaml (1.0.4)
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
@@ -35,15 +43,27 @@ GEM
       rack
       raindrops (~> 0.7)
     vcr (2.9.2)
+    webmock (1.22.6)
+      addressable (>= 2.3.6)
+      crack (>= 0.3.2)
+      hashdiff
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
   bundler (~> 1.6)
+  minitest (~> 5.10.1)
   pry (~> 0.10.0)
   rake (~> 10.0)
   sinatra (~> 1.4.5)
   sinatra-contrib (~> 1.4.2)
   unicorn (~> 4.2.0)
   vcr (~> 2.9.2)
+  webmock (~> 1.22.6)
+
+RUBY VERSION
+   ruby 2.3.0p0
+
+BUNDLED WITH
+   1.14.6
