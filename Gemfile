@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '2.1.4'
+ruby '2.3'
 
 gem 'bundler',         '~> 1.6'
 gem 'pry',             '~> 0.10.0'
